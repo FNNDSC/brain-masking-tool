@@ -205,7 +205,7 @@ def main():
             if '.nii' in img_path:
                 img_path = img_path[:img_path.rfind('.')]
 
-            save(res, img_path + '_mask_gamma.nii', hdr)
+            save(res, img_path + '_mask.nii', hdr)
              
         except Exception as e:
             print(e)
