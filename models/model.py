@@ -28,11 +28,11 @@ class Unet(MaskingModel):
         '''Class constructor get json model and h5 weigths and load model'''
 
         if bundle_dir:
-            weight_path = os.path.join(bundle_dir, 'models/weights/unet_weights.h5')
-            model_path = os.path.join(bundle_dir, 'models/json_models/unet_model.json')
+            weight_path = os.path.join(bundle_dir, 'models/weights/emerald_weights.h5')
+            model_path = os.path.join(bundle_dir, 'models/json_models/emerald_model.json')
         else:
-            weight_path = 'models/weights/unet_weights.h5'
-            model_path = 'models/json_models/unet_model.json'
+            weight_path = 'models/weights/emerald_weights.h5'
+            model_path = 'models/json_models/emerald_model.json'
 
         json_file = open(model_path, 'r')
         json_model = json_file.read()
