@@ -1,12 +1,9 @@
 # Automatic Brain Masking
 
 Deep learning based proyect for the automatic masking of a fetal brain.
-Takes as input either the contents of the images directory or a directory marked with
-"--target_dir=path_to_dir"
+Takes as input either the contents of the images directory, a directory or a stack of images.
 
 Currently only a unet based model can be used.
-A mask rcnn model is available but only for use with a GPU, 
-so all relevant maskrcnn parts have been commented out 
 
 It takes as input a path to a directory, and recursivly looks for all .nii files
 for each file it will save a new mask with the name name_mask.nii on the path of the original image
@@ -17,11 +14,13 @@ it will skip files that end with mask.nii.
 - pip
 
 Following can be installed with the requirements.txt file
-- tqdm==4.29.1
-- opencv_python_headless==4.0.0.21
-- numpy==1.16.2
-- MedPy==0.3.0
-- Keras==2.2.4
+- opencv-python-headless==4.7.0.68
+- MedPy==0.4.0
+- scikit-image==0.19.3
+- keras==2.11.0
+- tensorflow==2.11.0
+- tqdm==4.64.1
+- numpy==1.24.1
 
 ### instalation
 
@@ -71,9 +70,9 @@ install requirements from requirements.txt
 
 to run the masking tool
 
-    (env_name)$ python brain_mask.py --target_dir = path_to_dir
+    (env_name)$ python brain_mask.py path_to_img_or_dir
 
-if no --target_dir is specified it will target the images directory, where you can also include images.
+if no target is specified it will target the images directory, where you can also include images.
 you will have to activate the environment everytime you would like to use the tool
 
 ### limitation
