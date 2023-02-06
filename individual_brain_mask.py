@@ -11,7 +11,7 @@ from medpy.io import load, save
 from models.model import Unet
 from skimage.transform import resize
 from skimage.measure import label
-from skimage.morphology import binary_closing, cube
+from skimage.morphology import binary_closing, cube, binary_dilation
 
 parser = argparse.ArgumentParser()
 
@@ -39,7 +39,7 @@ parser.add_argument('--post-processing',
 parser.add_argument('--no-post-processing',
     dest='post_processing',
     action='store_false',
-    help='flag to indicate predicted mask should not be post processed (morphological closing and defragged)')
+    help='flag to indicate predicted mask should not be post processed (morphological closing, dilation and defragged)')
 parser.set_defaults(post_processing=True)
 
 parser.add_argument('--match',
@@ -119,7 +119,9 @@ def __normalize0_255(img_slice):
     return new_img
 
 def __postProcessing(mask):
-    pred_mask = binary_closing(np.squeeze(mask), cube(2))
+
+    bin_closing = binary_closing(np.squeeze(mask), cube(2))
+    pred_mask= binary_dilation(bin_closing,cube(1))
 
     try:
         labels = label(pred_mask)
